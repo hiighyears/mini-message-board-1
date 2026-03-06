@@ -5,7 +5,7 @@ const maincontroller = require('../controllers/maincontroller');
 router.get('/',maincontroller.getmessageindex);
 router.get('/new',maincontroller.getmessageform);
 router.post('/new',maincontroller.submitmessageform);
-router.get("/new/messages",maincontroller.getmessagedetails);
+router.get("/new/messages/:id",maincontroller.getmessagedetails);
 
 
 module.exports = router; 
