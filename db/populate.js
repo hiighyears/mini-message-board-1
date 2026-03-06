@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-
+require("dotenv").config();
 const { Client } = require("pg");
 
 const SQL = `
@@ -20,7 +20,10 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-        connectionString: process.env.DATABASE_URL || "postgresql://n@localhost:5432/top_users",
+    connectionString: process.env.DATABASE_URL || "postgresql://n@localhost:5432/top_users",
+    ssl: process.env.DATABASE_URL
+      ? { rejectUnauthorized: false }
+      : false,
   });
   await client.connect();
   await client.query(SQL);
